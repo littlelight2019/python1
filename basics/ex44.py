@@ -51,7 +51,7 @@ class LaserWeaponArmory(Scene):
 
 class TheBridge(Scene):
     def enter(self):
-        print("Welcome to the bridge...try to carry the place the bomb...[chance is 1/2]")
+        print("Welcome to the bridge...try to carry and place the bomb...[chance is 1/2]")
         luck = randint(0,1)
         if luck != 0:
             return Death()
