@@ -26,6 +26,7 @@ class Lexicon(object):
 
     def dispose(self):
         self.dic = None
+        self.scan = None
 
     def scan(self, input):
         result = []
