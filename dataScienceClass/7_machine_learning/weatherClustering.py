@@ -30,7 +30,7 @@ def pd_centers(features, centers):
     P['prediction'] = P['prediction'].astype(np.int)
     return P
 
-def parallel_plot(data, title):
+def parallel_plotbk(data, title):
     plt.figure()
     fig, ax = plt.subplots(figsize=(10,6))
     ax.set_ylim([-3, 3])
@@ -41,6 +41,16 @@ def parallel_plot(data, title):
     my_colors = list(islice(cycle(['r','g','b','y','k']), None, len(data)))
     parallel_coordinates(data, 'prediction', color = my_colors, marker = 'o')
 
+def parallel_plot(data, title):
+    plt.figure(figsize = (10,6))
+    plt.ylim([-3, 3])
+    plt.title(title)
+    plt.xlabel('Weather Features')
+    plt.ylabel('Standard Deviation')
+    plt.tick_params(labelrotation = 20)
+    my_colors = list(islice(cycle(['r','g','b','y','k']), None, len(data)))
+    parallel_coordinates(data, 'prediction', color = my_colors, marker = 'o')
+    
 def main():
     df = dataIngestion()
     KmeansModel = KmeansClustering(df)
