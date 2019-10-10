@@ -56,12 +56,11 @@ def modelEvalRMSE(model, X, y):
 
 def parallel_plot(df, label):
     my_colors = ['r', 'g', 'b']
-    plt.figure()
-    fig, ax = plt.subplots(figsize = (10, 6))
-    ax.set_title('Clusters of iris')
-    ax.set_xlabel('Flower Features')
-    ax.set_ylabel('Standard Deviations')
-    ax.tick_params(labelrotation = 20)
+    plt.figure(figsize = (10, 6))
+    plt.title('Clusters of iris')
+    plt.xlabel('Flower Features')
+    plt.ylabel('Standard Deviations')
+    plt.tick_params(labelrotation = 20)
     parallel_coordinates(df, label, color = my_colors, marker = 'o')
     
 def main():
