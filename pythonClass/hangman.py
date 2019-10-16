@@ -47,7 +47,7 @@ def chooseWord(wordlist):
 def isWordGuessed(secretWord, lettersGuessed):
     '''
     secretWord: string, the word the user is guessing
-    lettersGuessed: list, what letters have been guessed so far
+    lettersGuessed: dictionary with letters guessed so far as keys
     returns: boolean, True if all the letters of secretWord are in lettersGuessed;
       False otherwise
     '''
@@ -62,7 +62,7 @@ def isWordGuessed(secretWord, lettersGuessed):
 def getGuessedWord(secretWord, lettersGuessed):
     '''
     secretWord: string, the word the user is guessing
-    lettersGuessed: list, what letters have been guessed so far
+    lettersGuessed: dictionary with letters guessed so far as keys
     returns: string, comprised of letters and underscores that represents
       what letters in secretWord have been guessed so far.
     '''
@@ -79,7 +79,7 @@ def getGuessedWord(secretWord, lettersGuessed):
 
 def getAvailableLetters(lettersGuessed):
     '''
-    lettersGuessed: list, what letters have been guessed so far
+    lettersGuessed: dictionary with letters guessed so far as keys
     returns: string, comprised of letters that represents what letters have not
       yet been guessed.
     '''
@@ -120,17 +120,17 @@ def hangman(secretWord):
     while True:
         print('---------------')
         print('You have %d guesses left.' % guessLeft)
-        available = getAvailableLetters(guessedLetters.keys())
+        available = getAvailableLetters(guessedLetters)
         print('Available letters: %s' % available)
         letter = input('Please guess a letter: ')
-        if letter in guessedLetters:
-            print("Oops! You've already gussed that letter: %s" % guessedWord)
+        if len(letter) > 1 or letter not in available:
+            print("Oops! You've already guessed that letter or your entry is not a single letter: %s" % guessedWord)
         else:
             guessedLetters[letter] = 1
-            guessedWord = getGuessedWord(secretWord, guessedLetters.keys())
+            guessedWord = getGuessedWord(secretWord, guessedLetters)
             if letter in secretWord:
                 print('Good guess: %s' % guessedWord)
-                if isWordGuessed(secretWord, guessedLetters.keys()):
+                if isWordGuessed(secretWord, guessedLetters):
                     print('---------------')
                     print('Congratulations, you won!')
                     break
