@@ -1,5 +1,5 @@
 import ps4a
-import time
+#import time
 
 
 #
@@ -152,7 +152,7 @@ def playGame(wordList):
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':
-    wordList = loadWords()
+    wordList = ps4a.loadWords()
     playGame(wordList)
 
 
