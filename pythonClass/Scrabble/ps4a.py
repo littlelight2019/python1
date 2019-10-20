@@ -186,7 +186,10 @@ def calculateHandlen(hand):
     hand: dictionary (string-> int)
     returns: integer
     """
-    return len(hand)
+    length = 0
+    for k in hand:
+        length += hand[k]
+    return length
 
 
 
