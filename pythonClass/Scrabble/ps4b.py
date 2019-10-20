@@ -1,5 +1,5 @@
 import ps4a
-#import time
+import itertools
 
 
 #
@@ -7,7 +7,31 @@ import ps4a
 # Computer chooses a word
 #
 #
+def getPermutations(letters, j):
+    result = []
+    for permu in itertools.permutations(letters, j):
+        result.append(''.join(permu))
+    return result
+
 def compChooseWord(hand, wordList, n):
+    bestScore = 0
+    bestWord = None
+    letters = []
+    for l in hand:
+        count = hand[l]
+        for i in range(count):
+            letters.append(l)
+    for i in range(len(letters)):
+        myWordList = getPermutations(letters, i+1)
+        for word in myWordList:
+            if word in wordList:
+                score = ps4a.getWordScore(word, n)
+                if score > bestScore:
+                    bestScore = score
+                    bestWord = word
+    return bestWord
+
+def compChooseWordbk(hand, wordList, n):
     """
     Given a hand and a wordList, find the word that gives 
     the maximum value score, and return it.
