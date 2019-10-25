@@ -78,5 +78,27 @@ def displayRetireWMonthlies(monthlies, rate, terms):
         plt.plot(xvals, yvals, label='retire:' + str(monthly))
         plt.legend(loc = 'upper left')
         
-monthlies = [x * 100 for x in range(5,12)]
+def displayRetireWmonthsAndRates(monthlies, rates, terms):
+    plt.figure(figsize= (10, 6))
+    plt.title('retireBoth')
+    plt.clf()
+    plt.xlim(30*12, 40*12)
+    monthLabels = ['r', 'b', 'g', 'k']
+    rateLabels = ['-', 'o', '--']
+    for i in range(len(monthlies)):
+        monthly = monthlies[i]
+        monthLabel = monthLabels[i%len(monthLabels)]
+        for j in range(len(rates)):
+            rate = rates[j]
+            rateLabel = rateLabels[j%len(rateLabels)]
+            xvals, yvals = retire(monthly, rate, terms)
+            plt.plot(xvals, yvals, monthLabel+rateLabel,
+                     label = 'retire:' + str(monthly) + ":" \
+                     + str(int(rate*100)))
+            plt.legend(loc = 'upper left')
+            
+            
+monthlies = [x * 100 for x in range(5,12,2)]
 displayRetireWMonthlies(monthlies, 0.05, 40 * 12)
+rates = [y/100 for y in range(3, 8, 2)]
+displayRetireWmonthsAndRates(monthlies, rates, 40*12)
