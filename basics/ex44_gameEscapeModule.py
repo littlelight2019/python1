@@ -1,4 +1,3 @@
-#from sys import exit
 from random import randint
 
 attempt = 1
@@ -70,5 +69,4 @@ class EscapePod(Scene):
             return End()
 
 class End(Scene):
-    def enter(self):
-        exit(0)
+    pass

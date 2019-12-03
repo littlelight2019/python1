@@ -1,11 +1,10 @@
-# from sys import exit
 from random import randint
 
 class Engine(object):
     def __init__(self, firstScene):
         self.current_scene = firstScene
     def play(self):
-        while True:
+        while not isinstance(self.current_scene, End):
             print("\n-------")
             self.current_scene = self.current_scene.enter()
 
@@ -76,8 +75,7 @@ class EscapePod(Scene):
             return End()
 
 class End(Scene):
-    def enter(self):
-        exit(0)
+    pass
 
 if __name__ == '__main__':
     initScene = CentralCorridor()
